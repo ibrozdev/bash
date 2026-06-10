@@ -2,6 +2,10 @@
 
 # create a program that calculates the area of the room
 
+# Basic formula for conversion: 1ft = 0.3m
+
+
+
 read -p "What is the length of the room in feet? " LENGTH;
 
 read -p "What is the width of the room in feet? " WIDTH;
