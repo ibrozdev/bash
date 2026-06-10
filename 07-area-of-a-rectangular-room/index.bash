@@ -26,3 +26,9 @@ echo "
     $AREA_IN_SQUAREMETERS square meters
 
 ";
+
+# the output of this program is not the actual result , because of bash doesn't know the 
+# decimal number or (floating-point math)
+
+
+# So I did a challenge to try to solve it and find the actual number. look  challange.bash
