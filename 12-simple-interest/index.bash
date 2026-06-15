@@ -4,6 +4,8 @@
 # and display the amount accrued (principal + interest). The formula for simple interest is A = P(1 + rt), 
 # where P is the principal amount, r is the annual rate of interest, t is the number of years the amount is invested, and A is the amount at the end of the investment.
 
+# simple interest formula    A =  p (1 + (r * t ))
+
 echo -e "\n[$] simple interest calculator \n\n"
 
 read -p "Enter the  principal: " P;
