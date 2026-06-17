@@ -53,6 +53,17 @@ delete_task(){
     echo "Task deleted successfully!"
 }
 
+# search task
+search_task(){
+    read -p "Enter keyword to search: " keyword
+    if [[ -z "$keyword" ]]; then
+        echo "keyword cannot be empty!"
+        return
+    fi
+    echo "searching for tasks you'r looking for..."
+    grep -i "$keyword" "$FILE" || echo "No matching tasks found!"
+
+}
 
 # Main menu
 
@@ -63,7 +74,8 @@ do
     echo "1. Add Tasks "
     echo "2. View Tasks "
     echo "3. delete Tasks "
-    echo "4. Exit "
+    echo "4. Search Tasks "
+    echo "5. Exit "
     
     read -p "Choose option: " choice
 
@@ -78,6 +90,9 @@ do
         delete_task
         ;;
     4)
+        search_task
+        ;;
+    5)
         echo "Goodbye!"
         break
         ;;
