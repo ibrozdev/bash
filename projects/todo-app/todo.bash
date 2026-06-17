@@ -65,6 +65,14 @@ search_task(){
 
 }
 
+# clear all tasks
+# how to use this function: run the script and choose the option to clear all tasks. 
+# This will remove all tasks from the tasks.txt file.
+clear_tasks(){
+    > "$FILE"
+    echo "All tasks cleared!"
+}
+
 # Main menu
 
 while true
@@ -75,7 +83,8 @@ do
     echo "2. View Tasks "
     echo "3. delete Tasks "
     echo "4. Search Tasks "
-    echo "5. Exit "
+    echo "5. Clear Tasks "
+    echo "6. Exit "
     
     read -p "Choose option: " choice
 
@@ -93,6 +102,9 @@ do
         search_task
         ;;
     5)
+        clear_tasks
+        ;;
+    6)
         echo "Goodbye!"
         break
         ;;
