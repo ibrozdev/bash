@@ -27,6 +27,17 @@ backup_folder(){
     echo "Backup location: $DESTINATION"
 }
 
+list_backups(){
+    echo
+    echo " ===== Available backups ===== "
+    if [[ ! -d "$BACKUP_DIR" ]]; then
+        echo "No backup found. "
+        return
+    fi
+
+    ls -l "$BACKUP_DIR";
+}
+
 while true
 do
     echo
@@ -42,6 +53,9 @@ do
             backup_folder
             ;;
         2)
+            list_backups
+            ;;
+        3)
             echo "Goodby!"
             break
             ;;
