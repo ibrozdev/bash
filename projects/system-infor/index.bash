@@ -10,14 +10,27 @@
 # 5. Exit
 
 show_system_info(){
+    local hostname=$(hostname)
+    local current_user=$(whoami)
+    local os=$(uname -o)
+    local kernel_version=$(uname -r)
+    local cpu_cores=$(nproc)
+    local cpu_model=$(lscpu | grep 'Model name' | awk -F: '{print $2}' | xargs)
+    local cpu_architecture=$(uname -m)
+    local uptime=$(uptime -p)
     echo " ===== SYSTEM INFORMATION ====="
-    echo "Hostname: $(hostname)"
-    echo "Operating System: $(uname -o)"
-    echo "Kernel Version: $(uname -r)"
+    echo "Hostname: $hostname"
+    echo "Current User: $current_user"
+    echo "Operating System: $os"
+    echo "Kernel Version: $kernel_version"
     echo
     echo " ===== CPU INFORMATION ===== "
-    echo "Cpu cores: $(nproc)"
-    echo "Cpu model: $(lscpu | grep 'Model name' | awk -F: '{print $2}' | xargs)"
+    echo "Cpu cores: $cpu_cores"
+    echo "Cpu model: $cpu_model"
+    echo "Cpu architecture: $cpu_architecture"
+    echo
+    echo " ===== UPTIME INFORMATION ===== "
+    echo "Uptime: $uptime"
 }
 
 # memory information 
@@ -37,6 +50,8 @@ show_disk_info(){
     local total_disk=$(df -h --total | awk '/^total/ {print $2}')
     local used_disk=$(df -h --total | awk '/^total/ {print $3}')
     local free_disk=$(df -h --total | awk '/^total/ {print $4}')
+
+    # read total used free <<< $(df -h -- total | awk '/^total/ {print $2, $3, $4}')
 
     echo " ===== DISK INFORMATION ===== "
     echo "Total Disk Space: $total_disk"
