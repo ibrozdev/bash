@@ -61,11 +61,43 @@ show_disk_info(){
 
 # running processes
 show_running_processes(){
-    local processes=$(ps aux | head -n 10)
+    local processes=$(ps aux --sort=-%cpu | head -n 10)
     echo " =====  RUNNING PROCESSES ===== "
     echo "$processes"
 }
 
+
+# generate  and export report to a file 
+
+generate_report(){
+    REPORT_FILE="system_report_$(date +%Y%m%d_%H%M%S).txt"
+    {
+        echo " ===== SYSTEM INFORMATION ====="
+        echo "Hostname: $(hostname)"
+        echo "Current User: $(whoami)"
+        echo "Operating System: $(uname -o)"
+        echo "Kernel Version: $(uname -r)"
+        echo
+        echo " ===== CPU INFORMATION ===== "
+        echo "Cpu cores: $(nproc)"
+        echo "Cpu model: $(lscpu | grep 'Model name' | awk -F: '{print $2}' | xargs)"
+        echo "Cpu architecture: $(uname -m)"
+        echo
+        echo " ===== MEMORY INFORMATION ===== "
+        echo "Total Memory: $(free -h | awk '/^Mem:/ {print $2}')"
+        echo "Used Memory: $(free -h | awk '/^Mem:/ {print $3}')"
+        echo "Free Memory: $(free -h | awk '/^Mem:/ {print $4}')"
+        echo
+        echo " ===== DISK INFORMATION ===== "
+        echo "Total Disk Space: $(df -h --total | awk '/^total/ {print $2}')"
+        echo "Used Disk Space: $(df -h --total | awk '/^total/ {print $3}')"
+        echo "Free Disk Space: $(df -h --total | awk '/^total/ {print $4}')"
+        echo
+        echo " =====  RUNNING PROCESSES ===== "
+        ps aux --sort=-%cpu | head -n 10
+    } > "$REPORT_FILE"
+    echo "Report generated: $REPORT_FILE"
+}  
 
 
 
@@ -77,7 +109,8 @@ do
     echo "2. Memory Information "
     echo "3. Disk Information "
     echo "4. Running processes "
-    echo "5. Exit "
+    echo "5. Generate Report "
+    echo "6. Exit "
 
     read -p " choose option: " choice;
 
@@ -95,6 +128,9 @@ do
             show_running_processes
             ;;
         5)
+            generate_report
+            ;;
+        6)
             echo "Goodbye!"
             break
             ;;

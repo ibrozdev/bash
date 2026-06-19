@@ -1,0 +1,32 @@
+ ===== SYSTEM INFORMATION =====
+Hostname: Eng-Salaad
+Current User: engibroz
+Operating System: GNU/Linux
+Kernel Version: 6.6.114.1-microsoft-standard-WSL2
+
+ ===== CPU INFORMATION ===== 
+Cpu cores: 8
+Cpu model: Intel(R) Core(TM) i7-10610U CPU @ 1.80GHz
+Cpu architecture: x86_64
+
+ ===== MEMORY INFORMATION ===== 
+Total Memory: 7.6Gi
+Used Memory: 490Mi
+Free Memory: 7.2Gi
+
+ ===== DISK INFORMATION ===== 
+Total Disk Space: 1.9T
+Used Disk Space: 688G
+Free Disk Space: 1.2T
+
+ =====  RUNNING PROCESSES ===== 
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+engibroz    1232  200  0.0   7152  4380 pts/0    R+   22:05   0:00 ps aux --sort=-%cpu
+engibroz    1200  0.2  0.0   5072  3688 pts/0    S+   22:05   0:00 bash index.bash
+root         119  0.0  0.1  35220 12204 ?        Ss   20:44   0:02 /usr/lib/systemd/systemd-udevd
+root           1  0.0  0.1  24032 15348 ?        Ss   20:44   0:02 /sbin/init
+root          77  0.0  0.2  50388 16644 ?        S<s  20:44   0:00 /usr/lib/systemd/systemd-journald
+engibroz     405  0.0  0.1  22308 13568 ?        Ss   20:44   0:00 /usr/lib/systemd/systemd --user
+root         256  0.0  0.4 123440 32344 ?        Ssl  20:44   0:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+root         199  0.0  0.3  44076 29568 ?        Ss   20:44   0:00 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+engibroz     335  0.0  0.0   6380  5684 pts/0    Ss   20:44   0:00 -bash
