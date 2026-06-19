@@ -19,6 +19,18 @@ show_system_info(){
     echo "Cpu model: $(lscpu | grep 'Model name' | awk -F: '{print $2}' | xargs)"
 }
 
+# memory information 
+show_memory_info(){
+    local total_memory=$(free -h | awk '/^Mem:/ {print $2}')
+    local used_memory=$(free -h | awk '/^Mem:/ {print $3}')
+    local free_memory=$(free -h | awk '/^Mem:/ {print $4}')
+
+    echo " ===== MEMORY INFORMATION ===== "
+    echo "Total Memory: $total_memory";
+    echo "Used Memory: $used_memory";
+    echo "Free Memory: $free_memory";
+}
+
 
 
 while true
@@ -36,6 +48,9 @@ do
     case $choice in
         1)
             show_system_info
+            ;;
+        2)
+            show_memory_info
             ;;
         *)
             echo "invalid choice "
