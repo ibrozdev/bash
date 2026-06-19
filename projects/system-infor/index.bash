@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 # create system information script that displays the following information about the system:
 # ===== SYSTEM DASHBOARD =====
 
@@ -31,6 +32,26 @@ show_memory_info(){
     echo "Free Memory: $free_memory";
 }
 
+# disk information
+show_disk_info(){
+    local total_disk=$(df -h --total | awk '/^total/ {print $2}')
+    local used_disk=$(df -h --total | awk '/^total/ {print $3}')
+    local free_disk=$(df -h --total | awk '/^total/ {print $4}')
+
+    echo " ===== DISK INFORMATION ===== "
+    echo "Total Disk Space: $total_disk"
+    echo "Used Disk Space: $used_disk"
+    echo "Free Disk Space: $free_disk"
+}
+
+# running processes
+show_running_processes(){
+    local processes=$(ps aux | head -n 10)
+    echo " =====  RUNNING PROCESSES ===== "
+    echo "$processes"
+}
+
+
 
 
 while true
@@ -51,6 +72,16 @@ do
             ;;
         2)
             show_memory_info
+            ;;
+        3)
+            show_disk_info
+            ;;
+        4)
+            show_running_processes
+            ;;
+        5)
+            echo "Goodbye!"
+            break
             ;;
         *)
             echo "invalid choice "
