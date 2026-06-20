@@ -19,13 +19,16 @@ create_user(){
     fi
 }
 
+
 delete_user(){
     read -p "Enter the username to delete: " username
-    
+
     if [[ "$username" == "$(whoami)" ]]; then
         echo "You cannot delete the currently logged-in user."
         return
     fi
+
+
 
     if id "$username" &>/dev/null; then
         sudo userdel "$username"
@@ -34,6 +37,26 @@ delete_user(){
         echo "User '$username' does not exist."
     fi
 }
+
+
+
+
+list_users(){
+    echo " ===== LIST OF USERS ===== "
+    cut -d: -f1 /etc/passwd
+}
+
+
+check_user_exists(){
+    read -p "Enter the username to check: " username
+    if id "$username" &>/dev/null; then
+        echo "User '$username' exists."
+    else
+        echo "User '$username' does not exist."
+    fi
+}
+
+
 
 
 
@@ -60,6 +83,12 @@ do
     case $choice in 
         1)
             create_user
+            ;;
+        2)
+            delete_user
+            ;;
+        3)
+            list_users
             ;;
 
         5)
