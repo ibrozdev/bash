@@ -19,6 +19,25 @@ create_user(){
     fi
 }
 
+delete_user(){
+    read -p "Enter the username to delete: " username
+    
+    if [[ "$username" == "$(whoami)" ]]; then
+        echo "You cannot delete the currently logged-in user."
+        return
+    fi
+
+    if id "$username" &>/dev/null; then
+        sudo userdel "$username"
+        echo "User '$username' deleted successfully."
+    else
+        echo "User '$username' does not exist."
+    fi
+}
+
+
+
+
 
 
 
