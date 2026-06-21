@@ -28,8 +28,13 @@ count_lines(){
 
 # read the entire  error lines from the log file and count them
 count_errors(){
-    grep -c "ERROR" "$log_file" 
+    echo "Total error lines: $(grep -c "ERROR" "$log_file")";
 }
+
+count_warnings(){
+    echo "Total warning lines: $(grep -c "WARNING" "$log_file")";
+}
+
 
 while true;
 do
@@ -37,7 +42,8 @@ do
     echo "1. View Log "
     echo "2. count lines "
     echo "3. count errors "
-    echo "4. Exit "
+    echo "4. count warnings "
+    echo "5. Exit "
 
     read -p "Enter your choice: " choice;
 
@@ -52,6 +58,9 @@ do
             count_errors
             ;;
         4)
+            count_warnings
+            ;;
+        5)
             echo "Goodbye!"
             break
             ;;
