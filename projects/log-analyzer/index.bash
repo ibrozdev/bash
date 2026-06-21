@@ -35,6 +35,17 @@ count_warnings(){
     echo "Total warning lines: $(grep -c "WARNING" "$log_file")";
 }
 
+search_logs(){
+    local keyword="$1";
+    if [ -z "$keyword" ]; then
+        read -p "Enter: please provide a keyword to search for.";
+        return 1;
+    fi
+    grep -i "$keyword" "$log_file";
+}
+
+
+
 
 while true;
 do
@@ -43,7 +54,8 @@ do
     echo "2. count lines "
     echo "3. count errors "
     echo "4. count warnings "
-    echo "5. Exit "
+    echo "5. search logs "
+    echo "6. Exit "
 
     read -p "Enter your choice: " choice;
 
@@ -61,6 +73,9 @@ do
             count_warnings
             ;;
         5)
+            search_logs 
+            ;;
+        6)
             echo "Goodbye!"
             break
             ;;
