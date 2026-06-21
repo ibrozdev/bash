@@ -26,12 +26,18 @@ count_lines(){
     wc -l < "$log_file"
 }
 
+# read the entire  error lines from the log file and count them
+count_errors(){
+    grep -c "ERROR" "$log_file" 
+}
+
 while true;
 do
     echo " ===== Log Analyzer Menu ===== "
     echo "1. View Log "
     echo "2. count lines "
-    echo "3. Exit "
+    echo "3. count errors "
+    echo "4. Exit "
 
     read -p "Enter your choice: " choice;
 
@@ -43,6 +49,9 @@ do
             count_lines
             ;;
         3)
+            count_errors
+            ;;
+        4)
             echo "Goodbye!"
             break
             ;;
