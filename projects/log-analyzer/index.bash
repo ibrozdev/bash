@@ -44,7 +44,10 @@ search_logs(){
     grep -i "$keyword" "$log_file";
 }
 
-
+show_recent_logs(){
+    echo "Recent log entries (last 10 lines):"
+    tail -n 10 "$log_file"
+}
 
 
 while true;
@@ -55,7 +58,8 @@ do
     echo "3. count errors "
     echo "4. count warnings "
     echo "5. search logs "
-    echo "6. Exit "
+    echo "6. show recent logs "
+    echo "7. Exit "
 
     read -p "Enter your choice: " choice;
 
@@ -76,6 +80,9 @@ do
             search_logs 
             ;;
         6)
+            show_recent_logs
+            ;;
+        7)
             echo "Goodbye!"
             break
             ;;
