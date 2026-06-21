@@ -19,16 +19,19 @@ fi
 
 
 view_log() {
-
     cat  "$log_file"
+}
 
+count_lines(){
+    wc -l < "$log_file"
 }
 
 while true;
 do
     echo " ===== Log Analyzer Menu ===== "
     echo "1. View Log "
-    echo "2. Exit "
+    echo "2. count lines "
+    echo "3. Exit "
 
     read -p "Enter your choice: " choice;
 
@@ -37,6 +40,9 @@ do
             view_log
             ;;
         2)
+            count_lines
+            ;;
+        3)
             echo "Goodbye!"
             break
             ;;
